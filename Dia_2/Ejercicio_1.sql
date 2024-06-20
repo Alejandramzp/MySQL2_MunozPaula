@@ -56,4 +56,47 @@ INSERT INTO empleado VALUES(13, '82635162B', 'Juan Antonio','Sáez', 'Guerrero',
 SELECT apellido1 AS Primer_Apellido
 FROM empleado;
 
+-- 2.Lista el primer apellido de los empleados eliminando los apellidos que estén repetidos. 
+SELECT DISTINCT apellido1 AS Primer_Apellido
+FROM empleado;
+
+-- 3.Lista todas las columnas de la tabla empleado.
+SELECT *
+FROM empleado;
+
+-- 4.Lista el nombre y los apellidos de todos los empleados.
+SELECT nombre, apellido1, apellido2 
+FROM empleado;
+
+-- 5.Lista el identificador de los departamentos de los empleados que aparecen en la tabla empleado.
+SELECT e.id_departamento AS Identificador
+FROM empleado AS e;
+
+-- 6.Lista el identificador de los departamentos de los empleados que aparecen en la tabla empleado, 
+-- eliminando los identificadores que aparecen repetidos.
+SELECT DISTINCT e.id_departamento AS Identificador
+FROM empleado AS e;
+
+-- 7.Lista el nombre y apellidos de los empleados en una única columna.
+DELIMITER //
+CREATE FUNCTION Nombre_Apellidos(nombre VARCHAR(100),apellido1 VARCHAR(100),apellido2 VARCHAR(100))
+RETURNS VARCHAR(100) DETERMINISTIC
+BEGIN
+	RETURN CONCAT(nombre,' ',apellido1,' ',apellido2);
+END //
+DELIMITER ;
+
+SELECT Nombre_Apellidos(nombre,apellido1,apellido2)
+FROM empleado;
+
+-- 8.Lista el nombre y apellidos de los empleados en una única columna,convirtiendo todos los caracteres en mayúscula.
+SELECT UPPER(CONCAT(nombre,' ',apellido1,' ',apellido2)) AS 'Nombre y Apellidos'
+FROM empleado;
+
+-- 9.Lista el nombre y apellidos de los empleados en una única columna,convirtiendo todos los caracteres en minúscula.
+
+
+-- 10.Lista el identificador de los empleados junto al nif, pero el nif deberá aparecer en dos columnas, una mostrará únicamente los dígitos del nif y la otra la letra.
+
+
 -- REALIZADO POR PAULA MUÑOZ/ID.1.095.953.057
